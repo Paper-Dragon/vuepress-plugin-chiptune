@@ -5,15 +5,24 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "release": "pnpm publish"
   },
   "keywords": [
     "vuepress",
     "vuepress-plugin",
-    "chiptune"
+    "chiptune",
+    "music"
   ],
   "author": "Paper-Dragon",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paper-Dragon/vuepress-plugin-chiptune.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Paper-Dragon/vuepress-plugin-chiptune/issues"
+  },
+  "homepage": "https://github.com/Paper-Dragon/vuepress-plugin-chiptune#readme",
   "dependencies": {
     "@vuepress/client": "2.0.0-rc.24",
     "@vuepress/utils": "2.0.0-rc.24"
