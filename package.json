@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-chiptune",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A VuePress plugin for Chiptune music generation.",
   "main": "index.js",
   "type": "module",
