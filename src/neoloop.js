@@ -483,7 +483,6 @@ export function stopMusic() {
     source.stop();
     if (source._interval) clearInterval(source._interval);
   }
-  if (context) context.close();
   source = null;
   context = null;
   isPlaying = false;
