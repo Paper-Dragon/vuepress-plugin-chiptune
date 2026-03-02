@@ -5,6 +5,7 @@ let originalMotif = [], visualStep = 0;
 let canvas, ctx2d;
 let seedInput, scaleSelect, lengthSelect, chaos, chaosValue, bpmSlider, bpmOutput, togglePlay;
 let useLead, useLead2, useBass, useDrums, useFx, useReverb, useDelay, useChorus;
+let chaosInputListener, bpmInputListener;
 
 function initDOMReferences() {
     canvas = document.getElementById("pianoRoll");
@@ -394,7 +395,7 @@ async function renderAudio(seed, scaleMode, style, params, motif, steps) {
     }
 
     if (useDrumsChecked) {
-      const drumMultiplier = style === "crystal" || "dreamchip" ? 0.4 : 1.0;
+      const drumMultiplier = (style === "crystal" || style === "dreamchip") ? 0.4 : 1.0;
       if (i % 8 === 0) playNoise(ctx, t, 0.05, 0.1 * drumMultiplier, master);
       if (i % 8 === 4) playNoise(ctx, t, 0.04, 0.08 * drumMultiplier, master);
       if (i % 2 === 0) playNoise(ctx, t, 0.03, 0.04 * drumMultiplier, master);
@@ -475,7 +476,7 @@ function playMusic() {
   source._interval = interval;
 
   isPlaying = true;
-  togglePlay.textContent = "Stop";
+  togglePlay.textContent = "暂停";
 }
 
 export function stopMusic() {
@@ -486,7 +487,7 @@ export function stopMusic() {
   source = null;
   context = null;
   isPlaying = false;
-  if (togglePlay) togglePlay.textContent = "Play";
+  if (togglePlay) togglePlay.textContent = "播放";
 }
 
 export function togglePlayPause() {
@@ -612,8 +613,18 @@ export function exportMIDI() {
 
 export function init() {
     if (initDOMReferences()) {
-        // Add event listeners
-        chaos.addEventListener('input', () => chaosValue.textContent = chaos.value);
-        bpmSlider.addEventListener('input', () => bpmOutput.textContent = bpmSlider.value);
+        chaosInputListener = () => chaosValue.textContent = chaos.value;
+        bpmInputListener = () => bpmOutput.textContent = bpmSlider.value;
+        chaos.addEventListener('input', chaosInputListener);
+        bpmSlider.addEventListener('input', bpmInputListener);
+    }
+}
+
+export function cleanup() {
+    if (chaos && chaosInputListener) {
+        chaos.removeEventListener('input', chaosInputListener);
+    }
+    if (bpmSlider && bpmInputListener) {
+        bpmSlider.removeEventListener('input', bpmInputListener);
     }
 }

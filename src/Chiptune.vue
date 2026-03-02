@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { init, generateLoop, modifySounds, remixLoop, togglePlayPause, downloadWav, exportMIDI, triggerRandom, stopMusic } from './neoloop.js';
+import { init, generateLoop, modifySounds, remixLoop, togglePlayPause, downloadWav, exportMIDI, triggerRandom, stopMusic, cleanup } from './neoloop.js';
 
 export default {
   name: 'Chiptune',
@@ -83,6 +83,7 @@ export default {
   },
   beforeUnmount() {
     stopMusic();
+    cleanup();
   },
   methods: {
     generateLoop,
