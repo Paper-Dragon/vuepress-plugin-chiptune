@@ -478,7 +478,7 @@ function playMusic() {
   togglePlay.textContent = "Stop";
 }
 
-function stopMusic() {
+export function stopMusic() {
   if (source) {
     source.stop();
     if (source._interval) clearInterval(source._interval);

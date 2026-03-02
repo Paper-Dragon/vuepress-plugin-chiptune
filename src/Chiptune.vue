@@ -74,12 +74,15 @@
 </template>
 
 <script>
-import { init, generateLoop, modifySounds, remixLoop, togglePlayPause, downloadWav, exportMIDI, triggerRandom } from './neoloop.js';
+import { init, generateLoop, modifySounds, remixLoop, togglePlayPause, downloadWav, exportMIDI, triggerRandom, stopMusic } from './neoloop.js';
 
 export default {
   name: 'Chiptune',
   mounted() {
     init();
+  },
+  beforeUnmount() {
+    stopMusic();
   },
   methods: {
     generateLoop,
